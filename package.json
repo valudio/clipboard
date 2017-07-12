@@ -1,0 +1,26 @@
+{
+  "name": "@valudio/selected-text",
+  "version": "1.0.0",
+  "description": "Get the user's selected text in any active window. Windows only.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "selectedtext",
+    "text",
+    "selection",
+    "windows"
+  ],
+  "author": " Valudio <development@valudio.com>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/valudio/selected-text"
+  },
+  "gypfile": true,
+  "dependencies": {
+    "bindings": "^1.2.1",
+    "nan": "^2.6.2"
+  }
+}
