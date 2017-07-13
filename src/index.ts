@@ -3,6 +3,21 @@ export interface IClipboard {
   paste: () => void;
   getFromClipboard: () => string;
   setToClipboard: (string) => void;
-  getSelectedText: () => string;
+  getSelectedTextAsync: () => Promise<string>;
 }
-export const clipboard: IClipboard = require('bindings')('selectedText');
+
+// tslint:disable-next-line:no-var-requires
+const cb: IClipboard = require('bindings')('selectedText');
+
+cb.getSelectedTextAsync = () => {
+  return new Promise<string>(resolve => {
+    const prevValue = cb.getFromClipboard();
+    cb.copy();
+    setImmediate(() => {
+      const fromCb = cb.getFromClipboard();
+      cb.setToClipboard(prevValue);
+      resolve(fromCb);
+    });
+  });
+};
+export const clipboard = cb;

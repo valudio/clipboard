@@ -9,6 +9,7 @@
       "type": "node",
       "request": "launch",
       "name": "Example",
+      "preLaunchTask": "buildts",
       "program": "${workspaceRoot}\\dist\\example.js"
     }
   ]

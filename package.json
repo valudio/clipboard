@@ -6,15 +6,15 @@
   "typings": "dist/index.js",
   "gypfile": true,
   "scripts": {
-    "build": "npm run build:cpp && npm run build:ts",
+    "build": "npm run build:cpp && npm run build:ts && npm run test",
     "build:cpp": "rimraf build && npm run gyp",
-    "build:ts": "rimraf dist && npm run tsc",
+    "build:ts": "rimraf dist && npm run lint && npm run tsc",
     "gyp": "node-gyp configure build",
     "tsc": "tsc -p tsconfig.json",
     "clean": "rimraf build dist",
-    "lint": "tslint",
+    "lint": "tslint -c ./tslint.json 'src/**/*.ts'",
     "prepublish": "npm run build",
-    "test": "npm run build:ts && jest --coverage --forceExit"
+    "test": "npm run build:ts && jest --coverage --forceExit --runInBand"
   },
   "keywords": [
     "selectedtext",

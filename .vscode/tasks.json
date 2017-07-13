@@ -13,6 +13,11 @@
     },
     {
       "type": "npm",
+      "script": "build:ts",
+      "label": "buildts"
+    },
+    {
+      "type": "npm",
       "script": "test",
       "group": {
         "kind": "test",

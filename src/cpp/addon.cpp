@@ -42,32 +42,19 @@ void setToClipboard(const Nan::FunctionCallbackInfo<Value> &info)
     SelectedText::setTextToClipboard(cstr);
 }
 
-void getSelectedText(const Nan::FunctionCallbackInfo<Value> &info)
-{
-    auto prevTextInClipboard = SelectedText::getTextFromClipboard();
-    SelectedText::copy();
-    auto result = SelectedText::getTextFromClipboard();
-    CStringW cstr(prevTextInClipboard.c_str());
-    SelectedText::setTextToClipboard(cstr);
-    info.GetReturnValue().Set(Nan::New(result).ToLocalChecked());
-}
-
 void Init(Local<Object> exports)
 {
     exports->Set(Nan::New("copy").ToLocalChecked(),
                  Nan::New<FunctionTemplate>(copy)->GetFunction());
 
     exports->Set(Nan::New("paste").ToLocalChecked(),
-                 Nan::New<FunctionTemplate>(copy)->GetFunction());
+                 Nan::New<FunctionTemplate>(paste)->GetFunction());
 
     exports->Set(Nan::New("getFromClipboard").ToLocalChecked(),
                  Nan::New<FunctionTemplate>(getFromClipboard)->GetFunction());
 
     exports->Set(Nan::New("setToClipboard").ToLocalChecked(),
                  Nan::New<FunctionTemplate>(setToClipboard)->GetFunction());
-
-    exports->Set(Nan::New("getSelectedText").ToLocalChecked(),
-                 Nan::New<FunctionTemplate>(getSelectedText)->GetFunction());
 }
 
 NODE_MODULE(getSelectedText, Init) // no need for semi-colon here

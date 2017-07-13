@@ -1,12 +1,20 @@
+// tslint:disable:no-console
 import { clipboard } from './index';
 
-setInterval(function () {
-    console.log("Output: ");
+setInterval(() => {
     try {
-        console.log(clipboard.getSelectedText());
-        // clipboard.setToClipboard('Hola que tal estás');
-        // console.log(clipboard.getFromClipboard());
+        const before = clipboard.getFromClipboard();
+        console.log('Before copy:', before);
+        clipboard.copy();
+        setTimeout(() => {
+            console.log('After copy:', clipboard.getFromClipboard());
+            clipboard.setToClipboard(before);
+            console.log('After setting:', clipboard.getFromClipboard());
+        }, 150);
+        // clipboard.getSelectedTextAsync().then(s => {
+        //     console.log('After copy:', s);
+        // });
     } catch (error) {
         console.log(error);
     }
-}, 2000);
+}, 5000);
