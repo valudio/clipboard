@@ -2,7 +2,7 @@
   "targets": [
     {
       "target_name": "selectedText",
-      "sources": [ "src/*.cpp" ],
+      "sources": [ "src/cpp/*.cpp" ],
       "include_dirs": [
         "<!(node -e \"require('nan')\")"
       ],

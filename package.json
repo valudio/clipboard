@@ -2,14 +2,19 @@
   "name": "@valudio/selected-text",
   "version": "1.0.0",
   "description": "Get the user's selected text in any active window. Windows only.",
-  "main": "index.js",
+  "main": "dist/index.js",
+  "typings": "dist/index.js",
   "gypfile": true,
   "scripts": {
-    "build": "npm run clean && npm run gyp",
+    "build": "npm run build:cpp && npm run build:ts",
+    "build:cpp": "rimraf build && npm run gyp",
+    "build:ts": "rimraf dist && npm run tsc",
     "gyp": "node-gyp configure build",
-    "clean": "rimraf build",
+    "tsc": "tsc -p tsconfig.json",
+    "clean": "rimraf build dist",
+    "lint": "tslint",
     "prepublish": "npm run build",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "npm run build:ts && jest --coverage --forceExit"
   },
   "keywords": [
     "selectedtext",
@@ -23,13 +28,31 @@
     "type": "git",
     "url": "https://github.com/valudio/selected-text"
   },
-  
   "dependencies": {
     "bindings": "^1.2.1",
     "nan": "^2.6.2"
   },
   "devDependencies": {
+    "@types/jest": "^20.0.2",
+    "@types/node": "^8.0.11",
+    "jest": "^20.0.4",
     "node-gyp": "^3.6.2",
-    "rimraf": "^2.6.1"
+    "rimraf": "^2.6.1",
+    "tslint": "^5.5.0",
+    "typescript": "^2.4.1"
+  },
+  "jest": {
+    "verbose": true,
+    "bail": true,
+    "testEnvironment": "node",
+    "moduleFileExtensions": [
+      "js",
+      "json"
+    ],
+    "testPathIgnorePatterns": [
+      "/node_modules/",
+      "/typings/",
+      "/helpers/"
+    ]
   }
 }

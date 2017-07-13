@@ -10,7 +10,11 @@ Install the module:
 
 then require it:
 
-`var slt = require('@valudio/selected-text');`
+`var slt = require('@valudio/selected-text').selectedText;` for `js`
+
+or
+
+`import { selectedText as slt } from '@valudio/selected-text'` for `ts`
 
 and use it:
 
