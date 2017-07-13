@@ -14,15 +14,15 @@ Install the module:
 
 then require it:
 
-`var slt = require('@valudio/clipboard').selectedText;` for `js`
+`var clp = require('@valudio/clipboard').clipboard;` for `js`
 
 or
 
-`import { selectedText as slt } from '@valudio/clipboard'` for `ts`
+`import { clipboard as clp } from '@valudio/clipboard'` for `ts`
 
 and use it:
 
-`const text = slt.getSelectedText();`
+`const text = clp.getSelectedText();`
 
 ## API
 

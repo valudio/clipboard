@@ -1,7 +1,7 @@
 {
   "targets": [
     {
-      "target_name": "selectedText",
+      "target_name": "clipboard",
       "sources": [ "src/cpp/*.cpp" ],
       "include_dirs": [
         "<!(node -e \"require('nan')\")"

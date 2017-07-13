@@ -1,12 +1,12 @@
 #include <Windows.h>
 #include <iostream>
-#include "SelectedText.hpp"
 #include <string>
 #include <atlstr.h>
+#include "clipboard.hpp"
 
 using namespace std;
 
-void SelectedText::paste()
+void clipboard::paste()
 {
     // Create a generic keyboard event structure
     INPUT ip;
@@ -36,7 +36,7 @@ void SelectedText::paste()
     SendInput(1, &ip, sizeof(INPUT));
 }
 
-void SelectedText::copy()
+void clipboard::copy()
 {
     // Create a generic keyboard event structure
     INPUT ip;
@@ -66,7 +66,7 @@ void SelectedText::copy()
     SendInput(1, &ip, sizeof(INPUT));
 }
 
-string SelectedText::getTextFromClipboard()
+string clipboard::getTextFromClipboard()
 {
 
     if (!IsClipboardFormatAvailable(CF_UNICODETEXT) || !OpenClipboard(nullptr))
@@ -109,7 +109,7 @@ string SelectedText::getTextFromClipboard()
     return nullptr;
 }
 
-bool SelectedText::setTextToClipboard(CStringW textToclipboard)
+bool clipboard::setTextToClipboard(CStringW textToclipboard)
 {
     auto success = false;
 

@@ -13,11 +13,11 @@
     "tsc": "tsc -p tsconfig.json",
     "clean": "rimraf build dist",
     "lint": "tslint -c ./tslint.json 'src/**/*.ts'",
-    "prepublishOnly": "npm run build",
+    "prepublishOnly": "npm run build && npm run test",
     "test": "jest --coverage --forceExit"
   },
   "keywords": [
-    "selectedtext",
+    "clipboard",
     "text",
     "selection",
     "windows"

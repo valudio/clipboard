@@ -7,7 +7,7 @@ export interface IClipboard {
 }
 
 // tslint:disable-next-line:no-var-requires
-const cb: IClipboard = require('bindings')('selectedText');
+const cb: IClipboard = require('bindings')('clipboard');
 
 cb.getSelectedTextAsync = () => {
   return new Promise<string>(resolve => {

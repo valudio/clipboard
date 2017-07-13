@@ -1,7 +1,7 @@
 #pragma once
 #include <atlstr.h>
 
-class SelectedText
+class clipboard
 {
 public:
     static void paste();

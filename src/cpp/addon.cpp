@@ -2,24 +2,24 @@
 #include <iostream>
 #include <string>
 #include <atlstr.h>
-#include "selectedText.hpp"
+#include "clipboard.hpp"
 
 using namespace v8;
 using namespace std;
 
 void copy(const Nan::FunctionCallbackInfo<Value> &info)
 {
-    SelectedText::copy();
+    clipboard::copy();
 }
 
 void paste(const Nan::FunctionCallbackInfo<Value> &info)
 {
-    SelectedText::paste();
+    clipboard::paste();
 }
 
 void getFromClipboard(const Nan::FunctionCallbackInfo<Value> &info)
 {
-    auto result = SelectedText::getTextFromClipboard();
+    auto result = clipboard::getTextFromClipboard();
     info.GetReturnValue().Set(Nan::New(result).ToLocalChecked());
 }
 
@@ -39,7 +39,7 @@ void setToClipboard(const Nan::FunctionCallbackInfo<Value> &info)
     String::Utf8Value param1(info[0]->ToString());
     string myString = string(*param1);
     CStringW cstr(myString.c_str());
-    SelectedText::setTextToClipboard(cstr);
+    clipboard::setTextToClipboard(cstr);
 }
 
 void Init(Local<Object> exports)
@@ -57,4 +57,4 @@ void Init(Local<Object> exports)
                  Nan::New<FunctionTemplate>(setToClipboard)->GetFunction());
 }
 
-NODE_MODULE(getSelectedText, Init) // no need for semi-colon here
+NODE_MODULE(clipboard, Init) // no need for semi-colon here
