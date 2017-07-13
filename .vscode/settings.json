@@ -1,5 +1,7 @@
 {
   "files.associations": {
-    "*.rh": "cpp"
+    "*.rh": "cpp",
+    "xstring": "cpp",
+    "xlocale": "cpp"
   }
 }

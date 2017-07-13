@@ -1,11 +1,10 @@
 #include <Windows.h>
 #include <iostream>
-#include "SelectedText.h"
+#include "SelectedText.hpp"
 #include <string>
 #include <atlstr.h>
 
 using namespace std;
-
 
 void SelectedText::paste()
 {
@@ -35,7 +34,6 @@ void SelectedText::paste()
     ip.ki.wVk = VK_CONTROL;
     ip.ki.dwFlags = KEYEVENTF_KEYUP;
     SendInput(1, &ip, sizeof(INPUT));
-    cout << "Paste from library \n";
 }
 
 void SelectedText::copy()
@@ -46,7 +44,6 @@ void SelectedText::copy()
     ip.ki.wScan = 0;
     ip.ki.time = 0;
     ip.ki.dwExtraInfo = 0;
-
 
     // Press the "Ctrl" key
     ip.ki.wVk = VK_CONTROL;
@@ -67,94 +64,78 @@ void SelectedText::copy()
     ip.ki.wVk = VK_CONTROL;
     ip.ki.dwFlags = KEYEVENTF_KEYUP;
     SendInput(1, &ip, sizeof(INPUT));
-    cout << "Copy from library \n";
 }
 
 string SelectedText::getTextFromClipboard()
 {
-    if (!IsClipboardFormatAvailable(CF_UNICODETEXT))
-    {
+
+    if (!IsClipboardFormatAvailable(CF_UNICODETEXT) || !OpenClipboard(nullptr))
         return nullptr;
-    }
 
     try
     {
-        if (!OpenClipboard(nullptr))
-            return nullptr;
-
-
         auto handle = GetClipboardData(CF_UNICODETEXT);
-        if (handle == nullptr)
+        if (!handle)
             return nullptr;
 
-        WCHAR* ptr = nullptr;
+        WCHAR *ptr = nullptr;
 
         try
         {
-            ptr = static_cast<WCHAR*>(GlobalLock(handle));
-            GlobalUnlock(handle);
-            CloseClipboard();
-            // ReSharper disable CppJoinDeclarationAndAssignment
-            string a;
-            a = CW2A(ptr);
-            // ReSharper enable CppJoinDeclarationAndAssignment
-            return a;
-
+            ptr = static_cast<WCHAR *>(GlobalLock(handle));
+            if (ptr)
+            {
+                GlobalUnlock(handle);
+                CloseClipboard();
+                // ReSharper disable CppJoinDeclarationAndAssignment
+                string a;
+                a = CW2A(ptr);
+                // ReSharper enable CppJoinDeclarationAndAssignment
+                return a;
+            }
         }
         catch (...)
         {
             if (ptr != nullptr)
                 GlobalUnlock(handle);
         }
-
     }
     catch (...)
     {
     }
 
     CloseClipboard();
-    return nullptr;
-}
 
-CStringW SelectedText::getTextFromClipboard2()
-{
-    CStringW strData;
-    if (IsClipboardFormatAvailable(CF_UNICODETEXT) && OpenClipboard(nullptr))
-    {
-        auto handle = GetClipboardData(CF_UNICODETEXT);
-        if (handle)
-        {
-            auto ptr = static_cast<WCHAR*>(GlobalLock(handle));
-            if (ptr)
-            {
-                strData = ptr;
-                GlobalUnlock(handle);
-            }
-        }
-        CloseClipboard();
-    }
-    return strData;
+    return nullptr;
 }
 
 bool SelectedText::setTextToClipboard(CStringW textToclipboard)
 {
-    auto success = true;
+    auto success = false;
 
     if (OpenClipboard(nullptr))
     {
-        EmptyClipboard();
-        auto size = (textToclipboard.GetLength() + 1) * sizeof(WCHAR);
-        auto hClipboardData = GlobalAlloc(NULL, size);
-        if (hClipboardData)
+        try
         {
-            auto pchData = static_cast<WCHAR*>(GlobalLock(hClipboardData));
-            if (pchData)
+            EmptyClipboard();
+            auto size = (textToclipboard.GetLength() + 1) * sizeof(WCHAR);
+            auto hClipboardData = GlobalAlloc(NULL, size);
+            if (hClipboardData)
             {
-                memcpy(pchData, const_cast<WCHAR*>(textToclipboard.GetString()), size);
-                GlobalUnlock(hClipboardData);
-                SetClipboardData(CF_UNICODETEXT, hClipboardData);
+                auto pchData = static_cast<WCHAR *>(GlobalLock(hClipboardData));
+                if (pchData)
+                {
+                    memcpy(pchData, const_cast<WCHAR *>(textToclipboard.GetString()), size);
+                    GlobalUnlock(hClipboardData);
+                    SetClipboardData(CF_UNICODETEXT, hClipboardData);
+                    success = true;
+                }
             }
         }
+        catch (...)
+        {
+        }
+
         CloseClipboard();
     }
     return success;
