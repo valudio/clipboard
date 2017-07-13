@@ -4,7 +4,10 @@ dist/__tests__
 coverage
 *.ts
 !*.d.ts
-README.MD
 tsconfig.json
 tslint.json
 karma.conf.js
+.appveyor.yml
+LICENCE
+README.MD
+.npmignore
