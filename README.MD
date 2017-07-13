@@ -10,15 +10,15 @@ Node addon that will allow you to use some Windows Clipboard methods.
 
 Install the module:
 
-`npm i -S @valudio/selected-text`
+`npm i -S @valudio/clipboard`
 
 then require it:
 
-`var slt = require('@valudio/selected-text').selectedText;` for `js`
+`var slt = require('@valudio/clipboard').selectedText;` for `js`
 
 or
 
-`import { selectedText as slt } from '@valudio/selected-text'` for `ts`
+`import { selectedText as slt } from '@valudio/clipboard'` for `ts`
 
 and use it:
 
