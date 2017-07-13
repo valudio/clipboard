@@ -41,3 +41,7 @@ and use it:
 `node-gyp configure build` if you happen to have `node-gyp` installed globally. 
 
 If that's not the case, you can use `npm run build` or even better, if you are using `visual studio code`, just press `Ctrl+Shift+B`.
+
+## Debugging
+
+You'll see an `example.ts` file in the `src` folder. You will be able to debug it by pressing `F5` in your `visual studio code`.
