@@ -1,0 +1,25 @@
+version: #{build}
+environment:
+  # Define versions of Node.js
+  matrix:
+    - node_js: ''
+matrix:
+  fast_finish: true
+  allow_failures:
+    - node_js: ''
+# Define platforms
+platform:
+  - x64
+install:
+  # Install the platform version of Node.js
+  - ps: Install-Product node $env:node_js $env:platform
+  # Output useful info for debugging
+  - node --version
+  - npm --version
+  - ps: $PSVersionTable.PSVersion
+  # Install modules
+  - npm install
+test_script:
+  # run build script
+  - npm run build
+build: off
