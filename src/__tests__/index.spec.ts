@@ -1,10 +1,10 @@
-import { selectedText } from '../index';
+import { clipboard } from '../index';
 
 describe('Ensures that setToClipboard and getFromClipboard methods', () => {
   it('work', () => {
     const test = 'hello world';
-    selectedText.setToClipboard(test);
-    const from = selectedText.getFromClipboard();
+    clipboard.setToClipboard(test);
+    const from = clipboard.getFromClipboard();
     expect(from).toEqual(test);
   })
 });

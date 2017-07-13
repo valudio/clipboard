@@ -1,8 +1,8 @@
-export interface ISelectedText {
+export interface IClipboard {
   copy: () => string;
   paste: () => void;
   getFromClipboard: () => string;
   setToClipboard: (string) => void;
   getSelectedText: () => string;
 }
-export const selectedText: ISelectedText = require('bindings')('selectedText');
+export const clipboard: IClipboard = require('bindings')('selectedText');

@@ -1,11 +1,11 @@
-import { selectedText } from './index';
+import { clipboard } from './index';
 
 setInterval(function () {
-    console.log("Here is the complete output of the program: ");
+    console.log("Output: ");
     try {
-        // console.log(selectedText.getSelectedText());
-        selectedText.setToClipboard('Hola que tal estás');
-        console.log(selectedText.getFromClipboard());
+        console.log(clipboard.getSelectedText());
+        // clipboard.setToClipboard('Hola que tal estás');
+        // console.log(clipboard.getFromClipboard());
     } catch (error) {
         console.log(error);
     }
