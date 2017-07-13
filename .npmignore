@@ -6,8 +6,7 @@ coverage
 !*.d.ts
 tsconfig.json
 tslint.json
-karma.conf.js
-.appveyor.yml
 LICENCE
 README.MD
 .npmignore
+.appveyor.yml
