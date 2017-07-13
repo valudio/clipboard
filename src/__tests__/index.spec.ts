@@ -9,6 +9,18 @@ describe('Basic tests', () => {
   });
 
   describe('Ensures that getSelectedTextAsync', () => {
+    let copySpy;
+
+    beforeEach(() => {
+      copySpy = jest.spyOn(clipboard, 'copy');
+      copySpy.mockImplementation(() => '');
+    });
+
+    afterEach(() => {
+      copySpy.mockReset();
+      copySpy.mockRestore();
+    });
+
     it('works', () => {
       const test = 'hello world';
       clipboard.setToClipboard(test);
@@ -33,11 +45,8 @@ describe('Basic tests', () => {
     });
 
     it('calls copy', () => {
-      const spy = jest.spyOn(clipboard, 'copy');
       return clipboard.getSelectedTextAsync().then(() => {
-        expect(spy).toHaveBeenCalled();
-        spy.mockReset();
-        spy.mockRestore();
+        expect(copySpy).toHaveBeenCalled();
       });
     });
 
@@ -49,5 +58,6 @@ describe('Basic tests', () => {
         spy.mockRestore();
       });
     });
+
   });
 });
