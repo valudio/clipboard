@@ -2,8 +2,11 @@
 
 Node addon that will allow you to use some Windows Clipboard methods.
 
+[![NPM](https://nodei.co/npm/@valudio/clipboard.png?mini=true)](https://nodei.co/npm/@valudio/clipboard/)
+
 [![Build status](https://ci.appveyor.com/api/projects/status/lqalp2kjj3e482hq?svg=true)](https://ci.appveyor.com/project/robertohuertasm/clipboard)
 [![GitHub version](https://badge.fury.io/gh/valudio%2Fclipboard.svg)](https://badge.fury.io/gh/valudio%2Fclipboard)
+
 
 
 ## Usage
