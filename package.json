@@ -14,7 +14,13 @@
     "clean": "rimraf build dist",
     "lint": "tslint -c ./tslint.json 'src/**/*.ts'",
     "prepublishOnly": "npm run build && npm run test",
-    "test": "jest --coverage --forceExit"
+    "test": "jest --coverage --forceExit",
+    "version": "npm run build",
+    "postversion": "npm publish --access=public",
+    "rls": "npm --no-git-tag-version version",
+    "rls:patch": "npm run rls -- patch",
+    "rls:minor": "npm run rls -- minor",
+    "rls:major": "npm run rls -- major"
   },
   "keywords": [
     "clipboard",
