@@ -1,7 +1,7 @@
 {
   "name": "@valudio/clipboard",
   "version": "1.0.0",
-  "description": "Get the user's selected text in any active window. Windows only.",
+  "description": "Node addon that will allow you to use some Windows Clipboard methods.",
   "main": "dist/index.js",
   "typings": "dist/index.js",
   "gypfile": true,
