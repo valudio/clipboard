@@ -1,6 +1,6 @@
 {
   "name": "@valudio/clipboard",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Node addon that will allow you to use some Windows Clipboard methods.",
   "main": "dist/index.js",
   "typings": "dist/index.js",

@@ -70,13 +70,13 @@ string clipboard::getTextFromClipboard()
 {
 
     if (!IsClipboardFormatAvailable(CF_UNICODETEXT) || !OpenClipboard(nullptr))
-        return nullptr;
+        return "";
 
     try
     {
         auto handle = GetClipboardData(CF_UNICODETEXT);
         if (!handle)
-            return nullptr;
+            return "";
 
         WCHAR *ptr = nullptr;
 
@@ -106,7 +106,7 @@ string clipboard::getTextFromClipboard()
 
     CloseClipboard();
 
-    return nullptr;
+    return "";
 }
 
 bool clipboard::setTextToClipboard(CStringW textToclipboard)
