@@ -25,7 +25,13 @@ or
 
 and use it:
 
-`const text = clp.getSelectedText();`
+```js
+// getting the selected text from the active window
+let capturedText;
+clp.getSelectedTextAsync().then(result => {
+  capturedText = result;
+});
+```
 
 ## API
 
@@ -37,7 +43,7 @@ and use it:
 
 **setToClipboard(string)**: It will store some text in the clipboard.
 
-**getSelectedText():string**: It will get the selected text in the active window.
+**getSelectedTextAsync(): Promise<string>**: It will get the selected text in the active window.
 
 ## Building the addon
 
