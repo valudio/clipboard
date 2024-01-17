@@ -38,6 +38,20 @@
           }
         ]
       }
+    ],
+    ['OS=="linux"', 
+      {
+        'targets': [
+          {
+            'target_name': 'clipboard',
+            'sources': [ 'src/cppmock/*.cpp' ],
+            'include_dirs': [
+              '<!(node -e "require(\'nan\')")'
+            ],
+            'cflags_cc!': [ '-fno-rtti' ]
+          }
+        ]
+      }
     ]
   ]
 }
